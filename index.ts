@@ -5,8 +5,10 @@
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
+const SPOTIFY_REGEX = /https:\/\/open\.spotify\.com\/[^ ?]+/;
+
 export default definePlugin({
-    name: "FixSpotifyEmbeds",
+    name: "ActuallyFixSpotifyEmbeds",
     description: "Fixes Spotify embeds",
     authors: [Devs.nekohaxx],
     flux: {
