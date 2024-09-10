@@ -11,8 +11,9 @@ export default definePlugin({
     name: "ActuallyFixSpotifyEmbeds",
     description: "Fixes Spotify embeds",
     authors: [Devs.nekohaxx],
-    flux: {
-        "MESSAGE_CREATE": (event: any) => {
+    start() {
+        Vencord.Webpack.Common.FluxDispatcher._interceptors.push(event => {
+            if (event.type != "MESSAGE_CREATE") return;	
             if (event.message.content.match(SPOTIFY_REGEX)) {
                 event.message.embeds = event.message.embeds ?? [];
                 const url = event.message.content.match(SPOTIFY_REGEX)[0];
@@ -25,6 +26,6 @@ export default definePlugin({
                     },
                 });
             }
-        }
+        })
     }
 });
